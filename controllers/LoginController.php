@@ -43,7 +43,7 @@
 							}
 						break;
 						case 'pemilik':
-							$result = $this->auth->checkLoginPenulis($username, MD5($password));
+							$result = $this->auth->checkLoginPemilik($username, MD5($password));
 							if($result['result']){
 								session_start();
 								$_SESSION['logged_in'] = true;

@@ -50,6 +50,7 @@
             <h5 class="card-header">Buku yang sudah ditambahkan</h5>
             <?php
               if($data["page"] == "bukupenulis"){
+                if($_SESSION['level'] == "admin"){
                 ?>
                 <div class="col-md-12" style="position:absolute;margin-top:8px;text-align:right">
                   <a class="btn btn-success" href='index.php?hal=bukupenulis&action=tambah&id=<?= $data["penulis"]->id_penulis ?>'>
@@ -57,7 +58,9 @@
                   </a>
                 </div>
                 <?php
+                }
               } else {
+                if($_SESSION['level'] == "admin"){
                 ?>
                 <div class="col-md-12" style="position:absolute;margin-top:8px;text-align:right">
                   <a class="btn btn-success" href='index.php?hal=buku&action=tambah'>
@@ -65,6 +68,7 @@
                   </a>
                 </div>
                 <?php
+                }
               }
             ?>
 
@@ -83,11 +87,19 @@
                       <th class="border-0 centerHorizontal" style="width:20px">No</th>
                       <th class="border-0 text-center">Judul Buku</th>
                       <th class="border-0 text-center">Harga</th>
+                      <?php
+                      if($_SESSION['level'] == "admin"){
+                      ?>
                       <th class="border-0 text-center">Penulis</th>
+                    <?php } ?>
                       <th class="border-0 text-center">Tahun Terbit</th>
+                      <?php
+                      if($_SESSION['level'] == "admin"){
+                      ?>
                       <th class="border-0 text-center" width="100">
                         Aksi
                       </th>
+                      <?php } ?>
                     </tr>
                   </thead>
                   <tbody>
@@ -104,12 +116,19 @@
                         <td class="text-center">
                           <?= "Rp. ".format_rupiah($buku->harga) ?>
                         </td>
+                        <?php
+                        if($_SESSION['level'] == "admin"){
+                        ?>
                         <td class="text-center">
                           <?= $buku->nama_penulis ?>
                         </td>
+                        <?php } ?>
                         <td class="text-center">
                           <?= $buku->tahun_terbit ?>
                         </td>
+                        <?php
+                        if($_SESSION['level'] == "admin"){
+                        ?>
                         <td class="text-center">
                           <?php
                             switch ($data["page"]) {
@@ -137,6 +156,7 @@
                             }
                           ?>
                         </td>
+                        <?php } ?>
                       </tr>
                       <?php }?>
                   </tbody>

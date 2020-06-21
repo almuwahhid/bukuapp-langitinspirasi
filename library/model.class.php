@@ -140,6 +140,30 @@ class Model{
         return $this->db->execute()->toObject();
     }
 
+    public function getWhereNot($where = array()) {
+
+      $headline = "";
+
+      foreach($where as  $key => $value){
+        $headline .= $key." = '". $value. "' AND ";
+      }
+
+      $headline = rtrim($headline," AND ");
+
+          $sql = "SELECT * FROM " . $this->tableName;
+
+          if(is_array($where)) {
+
+              $sql .= " WHERE NOT ".$headline;
+
+          }
+          $this->db->query($sql);
+
+          echo $sql;
+
+          return $this->db->execute()->toObject();
+    }
+
     public function getWhereNotIn($wherenotin = array(), $where = array()) {
 
   		$headline = "";

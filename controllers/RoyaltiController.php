@@ -18,21 +18,36 @@
 
 			$tahun  = isset($_GET["tahun"]) ? $_GET["tahun"] : "";
 			$bulan  = isset($_GET["bulan"]) ? $_GET["bulan"] : "";
-			$idbuku  = isset($_GET["idbuku"]) ? $_GET["idbuku"] : "";
+			$id_buku  = isset($_GET["id_buku"]) ? $_GET["id_buku"] : "";
+			$title = "Penjualan ";
+
+			$urllaporan = "index.php?hal=laporan";
+      $urllaporan = isset($_GET["tahun"]) ? $urllaporan."&tahun=".$_GET["tahun"] : $urllaporan;
+      $urllaporan = isset($_GET["bulan"]) ? $urllaporan."&bulan=".$_GET["bulan"] : $urllaporan;
+      $urllaporan = isset($_GET["id_buku"]) ? $urllaporan."&id_buku=".$_GET["id_buku"] : $urllaporan;
 
 			$where = array();
-			if($tahun == ""){
-				$where['year(tanggal_penjualan)'] = date("Y");
-			} else {
-				$where['month(tanggal_penjualan)'] = $tahun;
+			if($_SESSION['level'] == "penulis"){
+				$id_penulis = json_decode($_SESSION['data'])->id_penulis;
+				$where['buku.id_penulis'] = $id_penulis;
+			}
+
+			if($id_buku != ""){
+				$where['penjualan_buku.id_buku'] = $id_buku;
+				$title .= 'Buku "'.$this->buku->getWhere(array('id_buku'   => $id_buku))[0]->nama_buku.'"';
 			}
 
 			if($bulan != ""){
 				$where['month(tanggal_penjualan)'] = $bulan;
+				$title .= " Bulan ".getBulan($bulan);
 			}
 
-			if($idbuku != ""){
-				$where['id_buku'] = $idbuku;
+			if($tahun == ""){
+				$where['year(tanggal_penjualan)'] = date("Y");
+				$title .= " Tahun ".date("Y");
+			} else {
+				$where['year(tanggal_penjualan)'] = $tahun;
+				$title .= " Tahun ".$tahun;
 			}
 
 			$result = array();
@@ -40,6 +55,8 @@
 			$result['account'] = json_decode($_SESSION['data']);
 			$result['royalti'] = $this->royalti->getRoyalti($where);
 			$result['buku'] = $this->buku->get();
+			$result['title'] = $title;
+			$result['laporan'] = $urllaporan;
 
 			$this->template('royalti/daftarroyaltibuku', $result);
 		}

@@ -36,21 +36,20 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <!-- <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/admin.png" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name"><?= $data['account']->nama ?></h5>
-                                    <!-- <span class="status"></span><span class="ml-2">Available</span> -->
                                 </div>
                                 <a class="dropdown-item" href="admin/ubahpassword"><i class="fas fa-cog mr-2"></i>Ubah Password</a>
                                 <a class="dropdown-item" href="admin/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </nav>
         </div>
         <!-- ============================================================== -->
@@ -74,6 +73,9 @@
                             <li class="nav-item">
                                 <a class="nav-link<?php if($data['page'] == "dashboard")echo " active";?> " href="index.php"><i class="fas fa-home"></i>Dashboard</a>
                             </li>
+                            <?php
+                            if($_SESSION['level'] == "admin" || $_SESSION['level'] == "penulis"){
+                            ?>
                             <li class="nav-item ">
                                 <a class="nav-link<?php if($data['page'] == "buku" || $data['page'] == "bukupenulis" )echo " active";?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-book"></i>Buku </a>
                                 <!-- <span class="badge badge-success">6</span> -->
@@ -82,15 +84,22 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="index.php?hal=buku">Daftar Buku</a>
                                         </li>
+                                        <?php
+                                        if($_SESSION['level'] == "admin"){
+                                        ?>
                                         <li class="nav-item">
                                             <a class="nav-link" href="index.php?hal=buku&&action=tambah">Tambah Buku</a>
                                         </li>
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link" href="index.php?hal=bukupenulis">Buku Penulis</a>
-                                        </li> -->
+                                        <?php
+                                        }?>
                                     </ul>
                                 </div>
                             </li>
+                            <?php
+                            }?>
+                            <?php
+                            if($_SESSION['level'] == "admin"){
+                            ?>
                             <li class="nav-item ">
                                 <a class="nav-link<?php if($data['page'] == "artikel")echo " active";?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-users"></i>Manage Penulis </a>
                                 <!-- <span class="badge badge-success">6</span> -->
@@ -105,6 +114,27 @@
                                     </ul>
                                 </div>
                             </li>
+                            <?php
+                            }?>
+                            <?php
+                            if($_SESSION['level'] == "pemilik"){
+                            ?>
+                            <li class="nav-item ">
+                                <a class="nav-link<?php if($data['page'] == "admin")echo " active";?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-users"></i>Manage Admin </a>
+                                <!-- <span class="badge badge-success">6</span> -->
+                                <div id="submenu-4" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.php?hal=admin">Daftar Admin</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="index.php?hal=admin&action=tambah">Tambah Admin</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <?php
+                            }?>
                             <li class="nav-item ">
                                 <a class="nav-link<?php if($data['page'] == "royalti")echo " active";?>" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fab fa-sellsy"></i>Royalti </a>
                                 <!-- <span class="badge badge-success">6</span> -->
@@ -113,14 +143,19 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="index.php?hal=royalti">Daftar Penjualan Buku</a>
                                         </li>
+                                        <?php
+                                        if($_SESSION['level'] == "admin"){
+                                        ?>
                                         <li class="nav-item">
                                             <a class="nav-link" href="index.php?hal=royalti&action=tambah">Tambah Penjualan Buku</a>
                                         </li>
+                                        <?php
+                                        }?>
                                     </ul>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link<?php if($data['page'] == "user")echo " active";?> " href="users"><i class="fas fa-cogs"></i>Pengaturan</a>
+                                <a class="nav-link<?php if($data['page'] == "pengaturan")echo " active";?> " href="index.php?hal=pengaturan"><i class="fas fa-cogs"></i>Pengaturan</a>
                             </li>
                             <li class="nav-item">
                               <a class="nav-link" href="index.php?action=logout"><i class="fa fa-fw fa-toggle-on"></i>Logout</a>

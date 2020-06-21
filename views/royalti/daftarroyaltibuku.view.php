@@ -30,88 +30,235 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="card">
             <div class="col-md-12 marg10-top">
-              <div class="row">
-                <div class="col-md-3">
-                  <b>Filter Buku :</b> <br>
-                  <div class="form-group">
-                    <select name="id_buku" class="form-control">
-                      <option value="0">All</option>
-                                        <?php
-                                        foreach ($data["buku"] as $k => $buku) {
-                                          ?>
-                                              <option value="<?= $buku->id_buku ?>">
-                                                <?= $buku->nama_buku ?></option>
+              <form class="" action="index.php?hal=royalti" method="get">
+                <input type="hidden" name="hal" value="royalti">
+                <div class="row">
+                  <div class="col-md-3">
+                    <b>Filter Buku :</b> <br>
+                    <div class="form-group">
+                      <select name="id_buku" class="form-control">
+                        <option value="">Semua Buku</option>
                                           <?php
-                                          }
-                                          ?>
-                    </select>
+                                          foreach ($data["buku"] as $k => $buku) {
+                                            ?>
+                                                <option value="<?= $buku->id_buku ?>"
+                                                  <?php
+                                                    if(isset($_GET["id_buku"]) && $_GET["id_buku"] == $buku->id_buku)
+                                                    echo "selected";
+                                                  ?>>
+                                                  <?= $buku->nama_buku ?></option>
+                                            <?php
+                                            }
+                                            ?>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <b>Filter Tahun :</b> <br>
+                    <div class="form-group">
+                      <select name="tahun" class="form-control">
+                        <option value="">Tahun Sekarang</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2000)
+                          echo "selected";
+                        ?> value="2000">Th. 2000</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2001)
+                          echo "selected";
+                        ?> value="2001">Th. 2001</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2002)
+                          echo "selected";
+                        ?> value="2002">Th. 2002</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2003)
+                          echo "selected";
+                        ?> value="2003">Th. 2003</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2004)
+                          echo "selected";
+                        ?> value="2004">Th. 2004</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2005)
+                          echo "selected";
+                        ?> value="2005">Th. 2005</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2006)
+                          echo "selected";
+                        ?> value="2006">Th. 2006</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2007)
+                          echo "selected";
+                        ?> value="2007">Th. 2007</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2008)
+                          echo "selected";
+                        ?> value="2008">Th. 2008</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2009)
+                          echo "selected";
+                        ?> value="2009">Th. 2009</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2010)
+                          echo "selected";
+                        ?> value="2010">Th. 2010</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2011)
+                          echo "selected";
+                        ?> value="2011">Th. 2011</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2012)
+                          echo "selected";
+                        ?> value="2012">Th. 2012</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2013)
+                          echo "selected";
+                        ?> value="2013">Th. 2013</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2014)
+                          echo "selected";
+                        ?> value="2014">Th. 2014</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2015)
+                          echo "selected";
+                        ?> value="2015">Th. 2015</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2016)
+                          echo "selected";
+                        ?> value="2016">Th. 2016</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2017)
+                          echo "selected";
+                        ?> value="2017">Th. 2017</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2018)
+                          echo "selected";
+                        ?> value="2018">Th. 2018</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2019)
+                          echo "selected";
+                        ?> value="2019">Th. 2019</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2020)
+                          echo "selected";
+                        ?> value="2020">Th. 2020</option>
+                        <option
+                        <?php
+                          if(isset($_GET["tahun"]) && $_GET["tahun"] == 2021)
+                          echo "selected";
+                        ?> value="2021">Th. 2021</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <b>Filter Bulan :</b> <br>
+                    <div class="form-group">
+                      <select name="bulan" class="form-control">
+                        <option value="">Seluruh Bulan</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 1)
+                          echo "selected";
+                        ?> value="1">Januari</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 2)
+                          echo "selected";
+                        ?> value="2">Februari</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 3)
+                          echo "selected";
+                        ?> value="3">Maret</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 4)
+                          echo "selected";
+                        ?> value="4">April</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 5)
+                          echo "selected";
+                        ?> value="5">Mei</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 6)
+                          echo "selected";
+                        ?> value="6">Juni</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 7)
+                          echo "selected";
+                        ?> value="7">Juli</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 8)
+                          echo "selected";
+                        ?> value="8">Agustus</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 9)
+                          echo "selected";
+                        ?> value="9">September</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 10)
+                          echo "selected";
+                        ?> value="10">Oktober</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 11)
+                          echo "selected";
+                        ?> value="11">November</option>
+                        <option
+                        <?php
+                          if(isset($_GET["bulan"]) && $_GET["bulan"] == 12)
+                          echo "selected";
+                        ?> value="12">Desember</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <br>
+                    <button type="submit" style="width:80px" class="btn btn-primary btn-lg btn-block">
+                      <i class="fas fa-search"></i>
+                    </button>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <b>Filter Tahun :</b> <br>
-                  <div class="form-group">
-                    <select name="tahun" class="form-control">
-                      <option value="0">All</option>
-                      <option value="2000">Th. 2000</option>
-                      <option value="2001">Th. 2001</option>
-                      <option value="2002">Th. 2002</option>
-                      <option value="2003">Th. 2003</option>
-                      <option value="2004">Th. 2004</option>
-                      <option value="2005">Th. 2005</option>
-                      <option value="2006">Th. 2006</option>
-                      <option value="2007">Th. 2007</option>
-                      <option value="2008">Th. 2008</option>
-                      <option value="2009">Th. 2009</option>
-                      <option value="2010">Th. 2010</option>
-                      <option value="2011">Th. 2011</option>
-                      <option value="2012">Th. 2012</option>
-                      <option value="2013">Th. 2013</option>
-                      <option value="2014">Th. 2014</option>
-                      <option value="2015">Th. 2015</option>
-                      <option value="2016">Th. 2016</option>
-                      <option value="2017">Th. 2017</option>
-                      <option value="2018">Th. 2018</option>
-                      <option value="2019">Th. 2019</option>
-                      <option value="2020">Th. 2020</option>
-                      <option value="2021">Th. 2021</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <b>Filter Bulan :</b> <br>
-                  <div class="form-group">
-                    <select name="bulan" class="form-control">
-                      <option value="0">All</option>
-                      <option value="1">Januari</option>
-                      <option value="2">Februari</option>
-                      <option value="3">Maret</option>
-                      <option value="4">April</option>
-                      <option value="5">Mei</option>
-                      <option value="6">Juni</option>
-                      <option value="7">Juli</option>
-                      <option value="8">Agustus</option>
-                      <option value="9">September</option>
-                      <option value="10">Oktober</option>
-                      <option value="11">November</option>
-                      <option value="12">Desember</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <br>
-                  <a class="btn btn-warning" href='index.php?hal=royalti&action=tambah'>
-                    <i class="fas fa-search"></i>
-                  </a>
-                </div>
-              </div>
+              </form>
             </div>
             <hr>
-            <h5 class="card-header">Penjualan Buku yang sudah ditambahkan</h5>
+            <h5 class="card-header"><?= $data["title"] ?></h5>
+            <?php
+            if($_SESSION['level'] == "admin"){
+            ?>
             <div class="col-md-12" style="position:absolute;margin-top: 80px;text-align:right">
               <a class="btn btn-success" href='index.php?hal=royalti&action=tambah'>
                 <i class="fas fa-plus"></i>
               </a>
             </div>
+            <?php } ?>
             <div class="card-body p-0">
               <div class="table-responsive">
                 <?php
@@ -127,14 +274,28 @@
                       <th class="border-0 centerHorizontal" style="width:20px">No</th>
                       <th class="border-0 text-center">Judul Buku</th>
                       <th class="border-0 text-center">Tgl Penjualan</th>
+                      <?php
+                      if($_SESSION['level'] == "admin"){
+                      ?>
                       <th class="border-0 text-center">Penulis</th>
+                      <?php } ?>
                       <th class="border-0 text-center">Harga</th>
                       <th class="border-0 text-center">Jumlah Penjualan</th>
                       <th class="border-0 text-center">SubTotal</th>
+                      <?php
+                      if($_SESSION['level'] == "admin"){
+                      ?>
                       <th class="border-0 text-center">Keuntungan</th>
+                      <?php } ?>
+                      <th class="border-0 text-center">Royalti</th>
+                      <?php
+                      if($_SESSION['level'] == "admin"){
+                      ?>
                       <th class="border-0 text-center" width="100">
                         Aksi
                       </th>
+                      <?php
+                      }?>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,9 +312,13 @@
                         <td class="text-center">
                           <?= tgl_indo($royalti->tanggal_penjualan) ?>
                         </td>
+                        <?php
+                        if($_SESSION['level'] == "admin"){
+                        ?>
                         <td class="text-center">
                           <?= $royalti->nama_penulis ?>
                         </td>
+                        <?php } ?>
                         <td class="text-center">
                           <?= "Rp. ".format_rupiah($royalti->harga) ?>
                         </td>
@@ -163,13 +328,23 @@
                         <td class="text-center">
                           <?= "Rp. ".format_rupiah(($royalti->jumlah_penjualan*$royalti->harga)) ?>
                         </td>
+                        <?php
+                        if($_SESSION['level'] == "admin"){
+                        ?>
                         <td class="text-center">
                           <?= "Rp. ".format_rupiah(($royalti->jumlah_penjualan*$royalti->harga) - (($royalti->jumlah_penjualan*$royalti->harga)*10/100)) ?>
                         </td>
+                        <?php } ?>
                         <td class="text-center">
-                          <a href='index.php?hal=royalti&action=detail&id=<?= $royalti->id_penjualan_buku ?>'>
+                          <?= "Rp. ".format_rupiah((($royalti->jumlah_penjualan*$royalti->harga)*10/100) - ((($royalti->jumlah_penjualan*$royalti->harga)*10/100)*15/100)) ?>
+                        </td>
+                        <?php
+                        if($_SESSION['level'] == "admin"){
+                        ?>
+                        <td class="text-center">
+                          <!-- <a href='index.php?hal=royalti&action=detail&id=<?= $royalti->id_penjualan_buku ?>'>
                             <i class="fas fa-search"></i>
-                          </a> &nbsp;&nbsp;
+                          </a> &nbsp;&nbsp; -->
                           <a class="btn btn-success" href='index.php?hal=royalti&action=edit&id=<?= $royalti->id_penjualan_buku ?>'>
                             <i class="fas fa-edit"></i>
                           </a> &nbsp;&nbsp;
@@ -177,6 +352,8 @@
                             <i class="fas fa-trash"></i>
                           </a>
                         </td>
+                        <?php
+                        }?>
                       </tr>
                       <?php }?>
                   </tbody>
@@ -213,7 +390,7 @@
           </div>
           <div style="font-size:20px" class="col-md-12">
             Cetak Royalti : &nbsp;&nbsp;
-            <a href="#">
+            <a target="_blank" href="<?= $data['laporan'] ?>">
               <i class="fas fa-print"></i>
             </a>
           </div>

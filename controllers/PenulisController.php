@@ -59,6 +59,70 @@
       }
 		}
 
+		public function konfirmasiakun(){
+			$this->model("penulis");
+			if($_SERVER["REQUEST_METHOD"] == "POST") {
+				$username  = isset($_POST["username"]) ? $_POST["username"] : "";
+				$hash  		 = isset($_POST["hash"]) ? $_POST["hash"] : "";
+				$password  = isset($_POST["password"]) ? md5($_POST["password"]) : "";
+				$sesi_data = $this->penulis->getWhere(array('hash' => $hash))[0];
+
+				if($username == trim($username) && strpos($username, ' ') != false){
+					$_SESSION['SUCCESS_MESSAGE'] = "Jangan gunakan username dengan spasi";
+					header("Location: index.php?hal=penulis&success=false&action=auth&hash=".$hash);
+				} else {
+					if(count($this->penulis->getWhereNotIn(array('username_penulis'   => $sesi_data->username_penulis), array('username_penulis'   => $username))) == 0){
+							$param = array(
+								'nama_penulis'   => $nama_penulis,
+								'jk_penulis'   => $jk,
+								'hash'   => "",
+								'username_penulis'   => $username
+							);
+
+							$insert = $this->penulis->update($param, array('id_penulis'   => $id_penulis));
+							if($insert){
+								// $_SESSION['data'] = json_encode($this->penulis->getWhere(array('id_penulis'   => $id_penulis))[0]);
+								// $_SESSION['SUCCESS_MESSAGE'] = "Biodata Penulis telah diupdate";
+								header("Location: index.php");
+							} else {
+								$_SESSION['SUCCESS_MESSAGE'] = "Gagal mengkonfirmasi Penulis";
+								header("Location: index.php?hal=penulis&success=false&action=auth&hash=".$hash);
+							}
+					} else {
+						// echo count($this->penulis->getWhereNot(array('username_penulis'   => $username)));
+						$_SESSION['SUCCESS_MESSAGE'] = "Username yang Anda masukkan sudah digunakan pengguna lain";
+						header("Location: index.php?hal=penulis&success=false&action=auth&hash=".$hash);
+					}
+				}
+			}
+		}
+
+		public function auth(){
+			$this->model("penulis");
+			if(isset($_GET["hash"])) {
+				$hash  = isset($_POST["hash"]) ? $_POST["hash"] : "";
+				$data = $this->penulis->getWhere(array('hash' => $hash));
+				if(count($penulis) > 0){
+					$penulis = $data[0];
+					$result = array();
+					$result['result'] = true;
+					$result['message'] = "Hash tidak tersedia";
+					$result['penulis'] = $penulis;
+					$this->template('penulis/formverifikasipenulis', $result);
+				} else {
+					$result = array();
+					$result['result'] = false;
+					$result['message'] = "Hash tidak tersedia";
+					$this->template('penulis/formverifikasipenulis', $result);
+				}
+			} else {
+				$result = array();
+				$result['result'] = false;
+				$result['message'] = "Hash tidak tersedia";
+				$this->template('penulis/formverifikasipenulis', $result);
+			}
+		}
+
     public function simpan(){
 			$this->model("penulis");
 
@@ -101,7 +165,7 @@
 										'hash'     => $hash
 									);
 
-									$path = PATH."index.php?hal=penulis&action=auth&hash=".$hash;
+									$path = PATH."index.php?hal=penulisauth&action=auth&hash=".$hash;
 									$message = <<<EMAIL
 									<!DOCTYPE html>
 									<html>
